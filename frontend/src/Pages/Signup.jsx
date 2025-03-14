@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import * as Yup from "yup";
 
 // Validation Schema (Same as Backend Joi)
@@ -12,13 +13,13 @@ const validationSchema = Yup.object({
     .max(20, "name cannot exceed 20 characters")
     .required("name is required"),
 
-    email: Yup.string()
+  email: Yup.string()
     .email("Enter a valid email address (e.g., example@domain.com)")
     .matches(/^[^\s@]+@[^\s@]+\.(com|net)$/, "Only .com and .net domains are allowed")
     .required("Email is required"),
 
 
-    password: Yup.string()
+  password: Yup.string()
     .min(3, "Password must be at least 3 characters long")
     .max(30, "Password must not exceed 30 characters")
     .matches(/^[^\s]*$/, "Only letters (A-Z, a-z) and numbers (0-9) are allowed. No spaces.")
@@ -43,7 +44,7 @@ const Signup = () => {
           validationSchema={validationSchema}
           onSubmit={async (values) => {
             setLoading(true);
-            console.log("values:",values);
+            console.log("values:", values);
             try {
               const response = await fetch("http://localhost:5000/api/user", {
                 method: "POST",
@@ -89,13 +90,22 @@ const Signup = () => {
 
             <div>
               <label className="block text-sm font-medium text-gray-700">Password</label>
-              <Field
-                name="password"
-                type={showPassword ? "text" : "password"}
-                className="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter your password"
-              />
-              <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
+              <div className='relative'>
+                <Field
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  className="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your password"
+                />
+                <button
+                  type="button"
+                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 focus:outline-none'
+                  onClick={() => { setShowPassword(!showPassword) }}
+                >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+                <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
+              </div>
             </div>
 
             <button
