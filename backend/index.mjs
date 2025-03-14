@@ -3,13 +3,10 @@ import mongoose from "./db/index.mjs";
 import userRoutes from "./routes/userRoutes.mjs"
 import chalk from "chalk";
 import cors from "cors";
+import connectToDB from "./db/index.mjs";
 
-mongoose.connection.on("open", () => {
-  console.log(chalk.white.bold.bgGreen("MongoDB connected"));
-});
-mongoose.connection.on("error", () => {
-  console.error(chalk.bold.bgRed("Error in connecting MongoDB"));
-});
+//Connecting MongoDB
+connectToDB()
 const app = express();
 app.use(cors());
 

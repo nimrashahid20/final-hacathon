@@ -2,6 +2,8 @@ import bcrypt from "bcrypt"
 import User from "../models/user/index.mjs";
 import 'dotenv/config'
 import JWT from "jsonwebtoken";
+import userSchema from "../schema/userSchema.mjs";
+import chalk from "chalk";
 
  const login = async (req, res) => {
     try {
@@ -24,17 +26,38 @@ import JWT from "jsonwebtoken";
       res.status(400).json({ error: err, status: 400});
     }
   };
- const createUser= async (req, res) => {
+   const createUser = async (req, res) => {
+    console.log(chalk.bgCyan("incoming call to signup api"));
+    if (!req.body) {
+      return req.status(400).json({ message: "Bad request" })
+    }
     try {
-      const password = bcrypt.hashSync(req.body.password, 10);
-      const user = await User.create({...req.body, password});
-      var token = JWT.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "60s" });
-
-      res.status(201).json({ status: 201, user , token});
-    } catch (err) {
-      res.status(400).json({ error: err, status: 400 });
+      const user = await userSchema.validateAsync(req.body);
+      const password = await bcrypt.hash(user.password, 10);
+      const newUser = await User.create({ ...user, password: password })
+      // const newUser =  new User({ ...user, password });
+  
+      await newUser.save();
+  
+      res.status(201).json({
+        message: "User created successfully",
+        user: { id: newUser.id, email: newUser.email },
+      });
+    } catch (error) {
+      if (error?.code === 11000) {
+        return res.status(409).json({
+          message: "Duplicate email - Email already exists",
+          error: error.message,
+        });
+      }
+      console.error(chalk.bgRed("Signup Error:"), error);
+      res.status(500).json({
+        message: "Internal Server Error",
+        error: error.message,
+      });
     }
   };
+  
  const getAllUsers= async (req, res) => {
     try {
       const users = await User.find();
