@@ -12,7 +12,7 @@ import chalk from "chalk";
       if(user){
        const checkPassword= bcrypt.compareSync(password, user.password);
        if(checkPassword){
-        var token = JWT.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: "60s" });
+        var token = JWT.sign({ email: user.email }, process.env.JWT_SECRET);
 
         res.status(200).json({status:200, message:"Login Successfull", user, token});
        }else{
@@ -35,7 +35,6 @@ import chalk from "chalk";
       const user = await userSchema.validateAsync(req.body);
       const password = await bcrypt.hash(user.password, 10);
       const newUser = await User.create({ ...user, password: password })
-      // const newUser =  new User({ ...user, password });
   
       await newUser.save();
   
@@ -66,6 +65,21 @@ import chalk from "chalk";
       res.status(400).json({ error: err, status: 400 });
     }
   };
+  const getLoggedInUser = async (req, res) => {
+    try {
+      // The tokenVerification middleware already decodes the token and attaches the user's email to `req.user`
+      const user = await User.findOne({ email: req.user.email }).select("-password"); // Exclude password from the response
+  
+      if (!user) {
+        return res.status(404).json({ status: 404, message: "User not found" });
+      }
+  
+      res.status(200).json({ status: 200, user });
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+      res.status(500).json({ status: 500, message: "Internal Server Error", error: error.message });
+    }
+  };
   const deleteUser= async(req, res) => {
   try {
      const { id } = req.params;
@@ -85,4 +99,4 @@ import chalk from "chalk";
       res.status(400).json({ error: err, status: 400 });
     }
   };
-  export { login, getAllUsers ,createUser , deleteUser , updateUser };
+  export { login, getAllUsers ,createUser , deleteUser , updateUser,getLoggedInUser };
