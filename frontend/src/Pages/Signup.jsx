@@ -54,10 +54,13 @@ const Signup = () => {
 
               const data = await response.json();
               setLoading(false);
+              console.log("Response:", response,"data", data);
+              
               if (response.ok) {
                 toast.success(data.message);
                 navigate("/");
-              }
+              }else{
+                toast.error(data.message || "An error occurred while signing up");}
             } catch (error) {
               setLoading(false);
               console.log("Error:", error);
