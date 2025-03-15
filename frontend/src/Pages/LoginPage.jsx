@@ -38,7 +38,8 @@ const Login = () => {
 
 			if (response.ok) {
 				toast.success(data.message);
-				navigate('/');
+				localStorage.setItem('token', data.token);
+				navigate('/profile');
 			} else {
 				toast.error(data.message || 'Invalid credentials');
 			}

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaHome, FaShoppingCart } from 'react-icons/fa';
 import logo from '../assets/images/logo (4).png';
+import { RiAccountCircleFill } from "react-icons/ri";
+
 
 const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +24,7 @@ const Navigation = () => {
 
 					<div className='hidden sm:flex space-x-6'>
 						<NavLink to='/' icon={<FaHome />} text='Home' />
+						<NavLink to='/profile' text='Profile' />
 						<NavLink to='/products' text='Products' />
 						<NavLink to='/about' text='About' />
 						<NavLink to='/contact' text='Contact' />
@@ -37,7 +40,7 @@ const Navigation = () => {
 
 					<div className='sm:hidden'>
 						<button onClick={toggleMenu} className='text-gray-500 hover:text-[#BD1521] focus:outline-none'>
-							{isOpen ? <FaTimes className='h-6 w-6' /> : <FaBars className='h-6 w-6' />}
+							{isOpen ? <FaTimes className='h-6 w-6' /> : <FaBars className='h-6 w-6' />} 
 						</button>
 					</div>
 				</div>
@@ -46,6 +49,7 @@ const Navigation = () => {
 			<div className={`${isOpen ? 'block' : 'hidden'} sm:hidden bg-white shadow-md`}>
 				<div className='px-4 pt-2 pb-3 space-y-2'>
 					<NavLinkMobile to='/' text='Home' onClick={toggleMenu} />
+					<NavLinkMobile to='/profile' text='Profile' onClick={toggleMenu} />
 					<NavLinkMobile to='/products' text='Products' onClick={toggleMenu} />
 					<NavLinkMobile to='/about' text='About' onClick={toggleMenu} />
 					<NavLinkMobile to='/contact' text='Contact' onClick={toggleMenu} />

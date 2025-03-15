@@ -9,6 +9,7 @@ import LoginPage from './Pages/LoginPage';
 import SignUp from './Pages/signup';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Profile from './Pages/Profile';
 
 const App = () => {
 	return (
@@ -27,6 +28,7 @@ const App = () => {
 			<Navigation />
 			<Routes>
 				<Route path='/' element={<Home />} />
+				<Route path='/profile' element={<Profile />} />
 				<Route path='/contact' element={<Contact />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/login' element={<LoginPage />} />
@@ -35,6 +37,6 @@ const App = () => {
 			<Footer />
 		</>
 	);
-};
+}
 
 export default App;
