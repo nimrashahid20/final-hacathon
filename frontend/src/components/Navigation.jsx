@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaHome, FaShoppingCart } from 'react-icons/fa';
 import logo from '../assets/images/logo (4).png';
-
+import { RiAccountCircleFill } from "react-icons/ri";
 
 const Navigation = () => {
 	const [isOpen, setIsOpen] = useState(false);
