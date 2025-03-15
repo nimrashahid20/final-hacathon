@@ -10,6 +10,7 @@ import SignUp from './Pages/signup';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Profile from './Pages/Profile';
+import UpdateProfile from './components/UpdateProfile';
 
 const App = () => {
 	return (
@@ -33,6 +34,7 @@ const App = () => {
 				<Route path='/about' element={<About />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/signup' element={<SignUp />} />
+				<Route path='/updateProfile' element={<UpdateProfile />} />
 			</Routes>
 			<Footer />
 		</>
