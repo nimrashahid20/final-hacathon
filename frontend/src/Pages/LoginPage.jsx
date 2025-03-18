@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../store/authSlice';
 
 const Login = () => {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: '',
 	});
+	const dispatch = useDispatch()
 
 	const [loading, setLoading] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
@@ -24,10 +27,10 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setLoading(true);
-		console.log("formdata:",formData);
+		console.log(formData);
 
 		try {
-			const response = await fetch('http://localhost:5000/api/user/login', {
+			const response = await fetch('http://localhost:5000/api/auth/user/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(formData),
@@ -35,12 +38,20 @@ const Login = () => {
 
 			const data = await response.json();
 			setLoading(false);
-
+			console.log(data.user);
+			
 			if (response.ok) {
+				localStorage.setItem("token",data.token)
+				localStorage.setItem("userId",data.user._id)
+				dispatch(loginSuccess({
+					token:data.token,
+					userId:data.userId
+				}))
 				toast.success(data.message);
+
 				navigate('/');
 			} else {
-				toast.error(data.message || 'Invalid credentials');
+				toast.error(data.message || 'Invalid email or password');
 			}
 		} catch (error) {
 			setLoading(false);

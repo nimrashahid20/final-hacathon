@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "./db/index.mjs";
 import userRoutes from "./routes/userRoutes.mjs"
+import cartRoutes from "./routes/cartRoutes.mjs"
 import chalk from "chalk";
 import cors from "cors";
 import connectToDB from "./db/index.mjs";
@@ -12,7 +13,8 @@ app.use(cors());
 
 app.use(express.json());
 const port = 5000;
-app.use("/api",userRoutes)
+app.use("/api/auth",userRoutes)
+app.use("/api/cart",cartRoutes)
 
 app.use("/", (req, res, next) => {
   console.log("Request URL:", req.url, "method: ", req.method);
