@@ -47,9 +47,9 @@ const AdminDashboard = () => {
 	};
 
 	// ✅ Run admin check on component mount
-	useEffect(() => {
-		checkAdminStatus();
-	}, []);
+	// useEffect(() => {
+	// 	checkAdminStatus();
+	// }, []);
 
 	// Function to toggle the sidebar
 	const toggleSidebar = () => {

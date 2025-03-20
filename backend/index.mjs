@@ -9,6 +9,7 @@ import connectToDB from "./db/index.mjs";
 //Connecting MongoDB
 connectToDB()
 const app = express();
+
 app.use(
 	cors({
 		origin: ['http://localhost:5174', 'http://localhost:5173'],
@@ -16,6 +17,8 @@ app.use(
 		credentials: true,
 	}),
 );
+
+
 app.use(express.json());
 const port = 5000;
 app.use("/api/auth",userRoutes)
