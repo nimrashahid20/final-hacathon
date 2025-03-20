@@ -10,6 +10,7 @@ import LoginPage from './Pages/LoginPage';
 import SignUp from './Pages/Signup';
 import Cart from "./Pages/Cart" 
 import Logout from "./Pages/Logout" 
+import Admin from "./Pages/AdminPage"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/admin" element={<Admin />} />
     </Routes>
       <Footer />
     </>

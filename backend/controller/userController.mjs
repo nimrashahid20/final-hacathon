@@ -8,7 +8,8 @@ import chalk from "chalk";
  const login = async (req, res) => {
     try {
       const { email,password } = req.body
-      const user= await User.findOne({email})
+      const user = await User.findOne({ email })
+
       if(user){
        const checkPassword= bcrypt.compareSync(password, user.password);
        if(checkPassword){
@@ -99,4 +100,13 @@ import chalk from "chalk";
       res.status(400).json({ error: err, status: 400 });
     }
   };
-  export { login, getAllUsers ,createUser , deleteUser , updateUser,getLoggedInUser };
+export { login, getAllUsers, createUser, deleteUser, updateUser, getLoggedInUser };
+  
+
+// for admin
+
+export const isAdmin = (req, res) => {
+  res.status(200).json({
+   message:"hello we are here in admin api"
+ }) 
+}

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import tokenVerification from "../config/tokenVerification.mjs";
+import tokenVerification from "../Middleware/tokenVerification.mjs";
 import {
   getCart
 } from "../controller/cartController.mjs";
