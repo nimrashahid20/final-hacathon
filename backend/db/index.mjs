@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import 'dotenv/config'
 import chalk from 'chalk';
-const url =`${process.env.MONGO_URL}`
+
+const dbName = 'smit'; // Define the database name
+const url = `${process.env.MONGO_URL}/${dbName}`;
 
 const connectToDB=async()=>{
     mongoose.connection.on("open", () => {

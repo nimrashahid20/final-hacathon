@@ -27,6 +27,7 @@ const Profile = () => {
         const data = await response.json();
         if (response.ok) {
           setUser(data.user);
+          console.log(data.user)
         } else {
           toast.error(data.message || "Failed to fetch user details");
           navigate("/login");

@@ -70,10 +70,10 @@ const getAllUsers = async (req, res) => {
 };
 const getLoggedInUser = async (req, res) => {
   try {
+
+    const {userId}= req.user
     // The tokenVerification middleware already decodes the token and attaches the user's email to `req.user`
-    const user = await User.findOne({ email: req.user.email }).select(
-      "-password"
-    ); // Exclude password from the response
+    const user = await User.findById(userId)
 
     if (!user) {
       return res.status(404).json({ status: 404, message: "User not found" });
