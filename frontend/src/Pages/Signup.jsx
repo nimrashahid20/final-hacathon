@@ -54,13 +54,13 @@ const Signup = () => {
 
               const data = await response.json();
               setLoading(false);
-              console.log("Response:", response,"data", data);
-              
-              if (response.ok) {
+              console.log("Response:", response, "data", data);
+              if (response.ok) {  
                 toast.success(data.message);
-                navigate("/");
-              }else{
-                toast.error(data.message || "An error occurred while signing up");}
+                navigate('/');
+              } else {
+                toast.error(data.message || "An error occurred while signing up");
+              }
             } catch (error) {
               setLoading(false);
               console.log("Error:", error);
@@ -105,7 +105,7 @@ const Signup = () => {
                   className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 focus:outline-none'
                   onClick={() => { setShowPassword(!showPassword) }}
                 >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
                 <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
               </div>
