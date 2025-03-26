@@ -83,9 +83,8 @@ const Navigation = () => {
       >
         <div className="px-4 pt-2 pb-3 space-y-2">
           <NavLinkMobile to="/" text="Home" onClick={toggleMenu} />
-          <NavLinkMobile to="/profile" text="Products" onClick={toggleMenu} />
+          <NavLinkMobile to="/products" text="Products" onClick={toggleMenu} />
           {isAuthenticated && <NavLinkMobile to="/profile" text="Profile" onClick={toggleMenu} />}
-          {/* <NavLinkMobile to="/products" text="Profile" onClick={toggleMenu} /> */}
           <NavLinkMobile to="/about" text="About" onClick={toggleMenu} />
           <NavLinkMobile to="/contact" text="Contact" onClick={toggleMenu} />
           <NavLinkMobile to="/signup" text="Sign Up" />
