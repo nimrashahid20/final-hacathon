@@ -28,20 +28,7 @@ const Products = () => {
 		fetchProducts();
 	}, []);
 
-	const handleDelete = async () => {
-		if (!selectedProduct) return;
 
-		setIsDeleting(true);
-		try {
-			await axios.delete(`${apiUrl}/products/${selectedProduct._id}`);
-			setProducts(products.filter((p) => p._id !== selectedProduct._id));
-		} catch (error) {
-			console.error('Error deleting product:', error);
-		} finally {
-			setIsDeleting(false);
-			setIsDeleteModalOpen(false);
-		}
-	};
 
 	return (
 		<div className='container mx-auto p-4'>

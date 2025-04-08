@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaBox, FaChartBar, FaUsers, FaShoppingCart, FaTimes } from 'react-icons/fa';
-import Products from './products';
+import Products from './Products';
 
 const AdminDashboard = () => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
