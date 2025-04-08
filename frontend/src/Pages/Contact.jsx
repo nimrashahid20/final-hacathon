@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Contact = () => {
 	const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ const Contact = () => {
 		setLoading(true);
 
 		try {
-			const response = await fetch('http://localhost:5000/api/contact', {
+			const response = await fetch(`${apiUrl}/contact`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(formData),

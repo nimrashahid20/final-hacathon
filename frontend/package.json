@@ -16,6 +16,7 @@
     "@material-tailwind/react": "^2.1.10",
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.12",
+    "axios": "^1.8.4",
     "font-awesome": "^4.7.0",
     "formik": "^2.4.6",
     "react": "^19.0.0",

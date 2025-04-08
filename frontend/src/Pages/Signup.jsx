@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import * as Yup from "yup";
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 // Validation Schema (Same as Backend Joi)
 const validationSchema = Yup.object({
@@ -46,7 +47,7 @@ const Signup = () => {
             setLoading(true);
             console.log("values:", values);
             try {
-              const response = await fetch("http://localhost:5000/api/auth/user", {
+              const response = await fetch(`${apiUrl}/auth/user`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),

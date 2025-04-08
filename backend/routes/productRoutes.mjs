@@ -1,6 +1,6 @@
 import express from 'express';
-import { addProduct,getAllProducts } from '../controllers/productController.js';
-import { uploadImage } from '../Middlewares/upload.js';
+import { addProduct,getAllProducts } from '../controller/productController.mjs';
+import { uploadImage } from '../Middleware/upload.mjs';
 
 const router = express.Router();
 

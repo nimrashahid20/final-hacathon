@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 // Reusable Product Component
 const Product = ({ id, name, price, quantity, imageLight, imageDark, description }) => {
@@ -119,28 +121,34 @@ const Product = ({ id, name, price, quantity, imageLight, imageDark, description
 // Main Shopping Cart Component
 const Cart = () => {
 	const navigate = useNavigate();
-	const [isLoggedIn, setisLoggedIn] = useState(false);
+	const [isLoggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
 		const fetchItems = async () => {
 			const token = localStorage.getItem('token');
 			if (!token) {
 				console.error('Unauthorized please log in');
 				navigate('/login');
+				return;
 			}
 
 			try {
-				const response = await fetch('http://localhost:5000/api/cart', {
+				const response = await fetch(`${apiUrl}/cart`, {
 					method: 'GET',
-					headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-        });
-        const data = await  response.json()
-				if (response.ok) {
-					setisLoggedIn(true);
-					console.log(data);
+					headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+					credentials: 'include',
+				});
+
+				const data = await response.json();
+				console.log(data);
+				if (data.success) {
+					setLoggedIn(true);
+				} else {
+					toast.error('Please login');
+					navigate('/login');
 				}
-      } catch (error) {
-        setisLoggedIn(false)
+			} catch (error) {
 				console.error('❌ error in fetching cart items', error);
+				setLoggedIn(false);
 			}
 		};
 		fetchItems();
@@ -166,9 +174,9 @@ const Cart = () => {
 		// Add more products as needed
 	];
 
-  if (!isLoggedIn) {
-    return
-  }
+	if (!isLoggedIn) {
+		return ;
+	}
 	return (
 		<section className='bg-white py-8 antialiased dark:bg-gray-900 md:py-16'>
 			<div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>

@@ -1,25 +1,27 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from '../components/AdminDashboard';
-
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 const AdminPage = () => {
 	const navigate = useNavigate();
 	const [isAdmin, setIsAdmin] = useState(false);
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const checkAdminStatus = async () => {
 			try {
 				const token = localStorage.getItem('token');
-
-				const response = await fetch('http://localhost:5000/api/auth/isAdmin', {
+if (!token) {
+					console.error('No auth token found! Redirecting to login.');
+					navigate('/login');
+					return;
+				}
+				const response = await fetch(`${apiUrl}/auth/isAdmin`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${token}`,
 					},
-					credentials: 'include',
 				});
 
 				const data = await response.json();
@@ -40,7 +42,7 @@ const AdminPage = () => {
 		};
 
 		checkAdminStatus();
-	}, [navigate]);
+	}, []);
 
 	if (loading) {
 		return <div>Loading...</div>;

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faUserPen } from "@fortawesome/free-solid-svg-icons";
+const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -18,7 +19,7 @@ const Profile = () => {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/auth/user/me", {
+        const response = await fetch(`${apiUrl}/auth/user/me`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
