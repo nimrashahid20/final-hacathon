@@ -15,8 +15,8 @@ app.use(
 	cors({
 		origin: ['http://localhost:5174',
 			 'http://localhost:5173',
-			 'https://ecommerce-app-three-phi.vercel.app/',
-			 'https://mernstack-batch11-section-j-production.up.railway.app'
+			'https://mer-nstack-batch11-section-j-nu.vercel.app/',
+			
 			],
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		credentials: true,
