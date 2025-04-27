@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom"; // Import Link for routing
-import logo from "../assets/images/logo (4).png";
+import logo from "../assets/images/logo.png";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
@@ -29,16 +29,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/">
-              <img className="h-8 w-auto md:h-30" src={logo} alt="logo" />
+              <img className="h-4 w-auto md:h-10" src={logo} alt="logo" />
             </Link>
           </div>
 
           <div className="hidden sm:flex space-x-6 ">
             <NavLink to="/" icon={faHome} text="Home" />
             {isAuthenticated && <NavLink to="/profile" text="Profile" />}
-            <NavLink to="/products" text="Products" />
-            <NavLink to="/about" text="About" />
-            <NavLink to="/contact" text="Contact" />
+            
 
             {isAuthenticated ? (
               <NavLink to="/logout" text="Logout" />

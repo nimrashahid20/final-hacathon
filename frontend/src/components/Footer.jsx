@@ -6,33 +6,33 @@ export default function Footer() {
     <footer className="bg-gray-800 text-white py-10">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
         
-        {/* About Section */}
+        {/* Company Information */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">About Us</h2>
+          <h2 className="text-xl font-semibold mb-4">Company Info</h2>
           <p className="text-gray-400 text-sm">
-            We provide high-quality products at the best prices.
+            A leading platform for managing employee records, performance, and more.
           </p>
         </div>
 
-        {/* Quick Links */}
+        {/* Team & Resources */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
+          <h2 className="text-xl font-semibold mb-4">Team & Resources</h2>
           <ul className="space-y-2">
-            <li><Link to="/products" className="text-gray-400 hover:text-white">Products</Link></li>
-            <li><Link to="/about" className="text-gray-400 hover:text-white">About</Link></li>
-            <li><Link to="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
-            <li><Link to="/faq" className="text-gray-400 hover:text-white">FAQ</Link></li>
+            <li><Link to="/teams" className="text-gray-400 hover:text-white">Our Teams</Link></li>
+            <li><Link to="/resources" className="text-gray-400 hover:text-white">Resources</Link></li>
+            <li><Link to="/training" className="text-gray-400 hover:text-white">Training</Link></li>
+            <li><Link to="/careers" className="text-gray-400 hover:text-white">Careers</Link></li>
           </ul>
         </div>
 
-        {/* Customer Service */}
+        {/* HR Services */}
         <div>
-          <h2 className="text-xl font-semibold mb-4">Customer Service</h2>
+          <h2 className="text-xl font-semibold mb-4">HR Services</h2>
           <ul className="space-y-2">
-            <li><Link to="/returns" className="text-gray-400 hover:text-white">Returns</Link></li>
-            <li><Link to="/shipping" className="text-gray-400 hover:text-white">Shipping</Link></li>
-            <li><Link to="/terms" className="text-gray-400 hover:text-white">Terms & Conditions</Link></li>
-            <li><Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/payroll" className="text-gray-400 hover:text-white">Payroll</Link></li>
+            <li><Link to="/benefits" className="text-gray-400 hover:text-white">Employee Benefits</Link></li>
+            <li><Link to="/leave-management" className="text-gray-400 hover:text-white">Leave Management</Link></li>
+            <li><Link to="/performance-reviews" className="text-gray-400 hover:text-white">Performance Reviews</Link></li>
           </ul>
         </div>
 
@@ -58,7 +58,7 @@ export default function Footer() {
 
       {/* Bottom Footer */}
       <div className="text-center text-gray-500 text-sm mt-8 border-t border-gray-700 pt-4">
-        © 2025 YourBrand. All Rights Reserved.
+        © 2025 YourCompany. All Rights Reserved.
       </div>
     </footer>
   );
