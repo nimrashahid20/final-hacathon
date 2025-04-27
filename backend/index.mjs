@@ -14,7 +14,7 @@ app.use(
 	cors({
 		origin: ['http://localhost:5174',
 			 'http://localhost:5173',
-			
+			 'https://final-hacathon-ck74lyu9u-nimrashahid20s-projects.vercel.app'
 			],
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		credentials: true,
